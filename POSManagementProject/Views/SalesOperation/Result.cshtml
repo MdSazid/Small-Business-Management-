@@ -1,0 +1,140 @@
+﻿@model POSManagementProject.Models.EntityModels.SalesOperationInformation
+
+@{
+    ViewBag.Title = "Result";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2">
+                @Html.Label("Sales No : ")
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.SalesNo)
+            </div>
+        </div>
+        
+        <div class="row">
+            <!---<div class="col-md-2">
+                @Html.Label("Branch : ")
+            </div>-->
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.Branch.Address)
+            </div>
+        </div>
+        
+        <div class="row">
+          <!---  <div class="col-md-2">
+                @Html.Label("Sold By : ")
+            </div>-->
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.Employee.Name)
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-2">
+                @Html.Label("Sales Date : ")
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.SalesDate)
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-2">
+                @Html.Label("Customer Name : ")
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.CustomerName)
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-2">
+                @Html.Label("Customer Contact : ")
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.CustomerContact)
+            </div>
+        </div>
+    </div>
+    <hr/>
+
+    <div class="col-md-12">
+        <table class="table">
+        
+            <thead>
+            <tr>
+                <th>@Html.Label("SL")</th>
+                <th>@Html.Label("Item")</th>
+                <th>@Html.Label("Qty")</th>
+                <th>@Html.Label("price")</th>
+                <th>@Html.Label("Line Total")</th>
+            </tr>
+            </thead>
+            <tbody>
+            @{ int sl = 0; }
+            @foreach (var item in Model.SalesItems)
+            {
+                sl++;
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => sl)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UnitPrice)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LineTotal)</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="text-end" >@Html.Label("Total Amount")</td>
+                <td>@Html.DisplayFor(model => model.TotalAmount)</td>
+            </tr>
+
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="text-end">@Html.Label("Discount Amount")</td>
+                <td>@Html.DisplayFor(model => model.DiscountAmount)</td>
+            </tr>
+            @{
+                double subTotalAmount = (double)(Model.TotalAmount - Model.DiscountAmount);
+                double vatAmount = (double)(subTotalAmount * (Model.VAT / 100));
+            }
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="text-end">@Html.Label("Sub Total Amount")</td>
+                <td>@Html.DisplayFor(model => @subTotalAmount)</td>
+            </tr>
+
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="text-end">@Html.Label("VAT ("+@Model.VAT+"%)")</td>
+                <td>@Html.DisplayFor(model => @vatAmount)</td>
+            </tr>
+
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="text-end">@Html.Label("Payable Amount")</td>
+                <td>@Html.DisplayFor(model => model.PayableAmount)</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-12 text-end">
+        @Html.Hidden("Hidden",@Model.SalesNo,new {@id="hiddenSalesNo"})
+        <input type="button" value="Export To Pdf" class="btn btn-primary w100" onclick="salesOpExportToPdf()"/>
+        <input type="button" value="Cancel" class="btn btn-danger w100" id="redirectIndex" />
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script src="~/Scripts/Project/SalesOperation.js"></script>
+}

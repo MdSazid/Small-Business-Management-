@@ -1,0 +1,84 @@
+﻿@model POSManagementProject.Models.EntityModels.PurchaseOperationInformation
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2">
+                @Html.Label("Purchase No : ")
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.PurchaseNo)
+            </div>
+        </div><div class="row">
+         <!---   <div class="col-md-2">
+                @Html.Label("Branch : ")
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Branch.Address)
+            </div>-->
+        </div><div class="row">
+            <div class="col-md-2">
+                @Html.Label("Supplier : ")
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Supplier.Name)
+            </div>
+        </div><div class="row">
+          <!---  <div class="col-md-2">
+                @Html.Label("Purchase By : ")
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Employee.Name)
+            </div>
+        </div><div class="row">
+            <div class="col-md-2">
+                @Html.Label("Remarks : ")
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Remarks)
+            </div>-->
+        </div><div class="row">
+            <div class="col-md-2">
+                @Html.Label("Purchase Date : ")
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.PurchaseDate)
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>@Html.Label("SL")</th>
+                    <th>@Html.Label("Item")</th>
+                    <th>@Html.Label("Qty")</th>
+                    <th>@Html.Label("price")</th>
+                    <th>@Html.Label("Line Total")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int sl = 0; }
+                @foreach (var item in Model.PurchaseItems)
+                {
+                    sl++;
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => sl)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.UnitPrice)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LineTotal)</td>
+                    </tr>
+                }
+                <tr style="border: 0">
+                    <td colspan="2"></td>
+                    <td colspan="2" class="text-end">@Html.Label("Total Amount")</td>
+                    <td>@Html.DisplayFor(model => model.TotalAmount)</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

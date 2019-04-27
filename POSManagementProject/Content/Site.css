@@ -1,0 +1,88 @@
+﻿body {
+    margin: 0;
+    background-color: #f3f3f3;
+    background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("background.jpg");
+    background-attachment: fixed;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+.dataTables_wrapper,
+.container{
+    padding: 15px;
+    background: white;
+    border-radius: 5px;
+}
+.container {
+    margin-top: 50px;
+    margin-bottom: 90px;
+    position: relative;
+}
+.add-button {
+    width: 30%;
+    height: 50px;
+    background-color: #2e7d32;
+    padding: 12px;
+    font-size: 1.3em;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    transition: 300ms;
+    border: none;
+    border-radius: 0 20px 0 20px;
+}
+    .add-button:hover {
+        transition: 300ms;
+        background-color: #1b5e20;
+        color: #ff9100;
+    }
+.feature-image {
+    display: inline-block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.text-end {
+    text-align: end;
+}
+.pl15 {
+    padding-left: 15px 
+}
+
+.tab-inner {
+    padding: 15px 0;
+}
+.footer-text {
+    padding: 15px;
+    color: white;
+}
+.footer-text span{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #1b5e20;
+    text-transform: uppercase;
+    
+}
+.team-name {
+    padding-left: 5px;
+}
+.footer-text span span {
+    color: #b71c1c;
+}
+.te-center {
+    text-align: center;
+}
+.w100 {
+    min-width: 100px;
+}
+
